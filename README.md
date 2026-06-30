@@ -36,13 +36,16 @@ Mã nguồn ban đầu đã được bổ sung và tinh chỉnh lại cho đầy
 **Bước 1: Clone kho lưu trữ và thiết lập môi trường**
 Tải mã nguồn về và cài đặt các thư viện cần thiết. Nếu bạn chạy trên Colab, bước này cũng tương đương với việc mount Google Drive:
 ```bash
-git clone <url_repo>
-cd final-project/THOR-ISA
-pip install -r requirements.txt
-pip install peft accelerate bitsandbytes opt_einsum optimum transformers -U
+git clone https://github.com/ngmhoang62/THOR-Finetuning-Reproduction.git
+cd THOR-Finetuning-Reproduction/THOR-ISA
 ```
 
-**Bước 2: Cấu hình tham số LoRA và Self-Consistency**
+**Bước 2: Cấu hình Hugging Face Token (dành cho mô hình gated)**
+Để tải các mô hình yêu cầu cấp quyền như Gemma-3, bạn cần có Hugging Face Token:
+- **Trong file cấu hình**: Mở file `config/config.yaml` và cập nhật trường `hf_token: 'token_của_bạn'`.
+- **Trong file notebook**: Cập nhật biến `HF_TOKEN = "token_của_bạn"` tại cell thực thi mô hình Gemma-3.
+
+**Bước 3: Cấu hình tham số LoRA và Self-Consistency**
 Các tham số LoRA đã được định nghĩa sẵn bên trong `src/model.py` khi truyền cờ kích hoạt `--use_lora True`, với các giá trị cụ thể như sau:
 - `r = 16`
 - `lora_alpha = 32`
@@ -52,7 +55,7 @@ Các tham số LoRA đã được định nghĩa sẵn bên trong `src/model.py`
 
 Cơ chế Self-Consistency được điều khiển thông qua cấu hình trong quá trình sinh (`generate`), ví dụ như sử dụng `do_sample=True`, `temperature=0.7`, `top_p=0.9`.
 
-**Bước 3: Chạy các thực nghiệm cụ thể**
+**Bước 4: Chạy các thực nghiệm cụ thể**
 Các câu lệnh để chạy cụ thể từng thực nghiệm (Flan-T5-base, Flan-T5-XXL + LoRA, Gemma-3-4B-It) cũng như các thực nghiệm ablation (bỏ Self-Consistency, bỏ Reason-Revising) **đã được viết sẵn đầy đủ và chi tiết thành từng cell trong file notebook `THOR_ISA_Colab.ipynb`**. Bạn chỉ việc mở notebook này trên Colab (yêu cầu GPU A100) và chạy lần lượt từ trên xuống dưới.
 
 *Lưu ý cấu hình bổ sung (chưa có trong file notebook):*
