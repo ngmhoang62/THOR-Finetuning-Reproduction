@@ -1,6 +1,6 @@
-# Hướng dẫn tái lập thực nghiệm THOR
+# Hướng dẫn tái lập thực nghiệm Fine-tuning THOR
 
-File markdown này hướng dẫn cách tái lập lại thực nghiệm trong bài báo THOR (Reasoning Implicit Sentiment with Chain-of-Thought Prompting).
+File markdown này hướng dẫn cách tái lập lại thực nghiệm cho phương pháp **Fine-tuning** trong bài báo THOR (Reasoning Implicit Sentiment with Chain-of-Thought Prompting).
 
 **Thông tin nhóm thực hiện (4 thành viên):**
 - Nguyễn Minh Hoàng - 23520530
